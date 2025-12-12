@@ -4,6 +4,16 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - run: echo "CI funcionando"
+    - name: Checkout del repositorio
+      uses: actions/checkout@v3
+
+    - name: Paso básico de CI
+      run: echo "CI funcionando"
+
+    - name: Show secret in build (demo)
+      run: |
+          echo "El secret de GitHub es: $MY_SECRET_MESSAGE"
+      env:
+        MY_SECRET_MESSAGE: ${{ secrets.MY_SECRET_MESSAGE }}
